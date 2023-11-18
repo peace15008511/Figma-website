@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const SectionTitle = styled.h2`
   font-size: 20px;
@@ -10,14 +10,14 @@ const SectionTitle = styled.h2`
   padding-left: 35px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 25px; /* Adjust the line width */
     height: 4px; /* Adjust the line height */
-    background-color: #d200c8; 
+    background-color: #d200c8;
   }
 `;
 
@@ -40,7 +40,6 @@ const LogoGrid = styled.div`
   max-width: 90%; /* Set a maximum width for the grid */
   margin: 0 auto;
   margin-top: 60px;
-
 `;
 
 const BrandLogo = styled.img`
@@ -52,25 +51,28 @@ const BrandLogo = styled.img`
   margin-top: 10px;
 `;
 
-
 const brandsList = [
-  { brandName: 'Visa', image: 'visa-black.svg', alt: 'Visa' },
-  { brandName: 'TimeBank', image: 'tyme-bank-black.svg', alt: 'Time Bank' },
-  { brandName: 'Distell', image: 'distell-black.svg', alt: 'Distell' },
-  { brandName: 'Spotify', image: 'spotify-black.svg', alt: 'Spotify' },
-  { brandName: 'Microsoft', image: 'microsoft-black.svg', alt: 'Microsoft' },
+  { brandName: "Visa", image: "visa-black.svg", alt: "Visa" },
+  { brandName: "TimeBank", image: "tyme-bank-black.svg", alt: "Time Bank" },
+  { brandName: "Distell", image: "distell-black.svg", alt: "Distell" },
+  { brandName: "Spotify", image: "spotify-black.svg", alt: "Spotify" },
+  { brandName: "Microsoft", image: "microsoft-black.svg", alt: "Microsoft" },
 
-  { brandName: 'Engen', image: 'engen-black.svg', alt: 'Engen' },
-  { brandName: 'Nike', image: 'nike-black.svg', alt: 'Nike' },
-  { brandName: 'Wesgrow', image: 'wesgrow-black.svg', alt: 'Wesgrow' },
-  { brandName: 'MultiChoice', image: 'multichoice-black.svg', alt: 'MultiChoice' },
-  { brandName: 'PicknPay', image: 'pnp-black.svg', alt: 'PicknPay' },
+  { brandName: "Engen", image: "engen-black.svg", alt: "Engen" },
+  { brandName: "Nike", image: "nike-black.svg", alt: "Nike" },
+  { brandName: "Wesgrow", image: "wesgrow-black.svg", alt: "Wesgrow" },
+  {
+    brandName: "MultiChoice",
+    image: "multichoice-black.svg",
+    alt: "MultiChoice",
+  },
+  { brandName: "PicknPay", image: "pnp-black.svg", alt: "PicknPay" },
 
-  { brandName: 'Liquid', image: 'liquid-black.svg', alt: 'Liquid' },
-  { brandName: 'TFG', image: 'tfg-black.svg', alt: 'TFG' },
-  { brandName: 'Sanlam', image: 'sanlam-black.svg', alt: 'Sanlam' },
-  { brandName: 'Santam', image: 'santam-black.svg', alt: 'Santam' },
-  { brandName: 'BBC', image: 'bbc-black.svg', alt: 'BBC' },
+  { brandName: "Liquid", image: "liquid-black.svg", alt: "Liquid" },
+  { brandName: "TFG", image: "tfg-black.svg", alt: "TFG" },
+  { brandName: "Sanlam", image: "sanlam-black.svg", alt: "Sanlam" },
+  { brandName: "Santam", image: "santam-black.svg", alt: "Santam" },
+  { brandName: "BBC", image: "bbc-black.svg", alt: "BBC" },
   // Add more brands as needed
 ];
 
@@ -78,21 +80,17 @@ const brandsList = [
 function Brands() {
   return (
     <div>
-
       {/* Good company Section */}
-      <GoodCompanyContainer >
-          <SectionTitle>You'll be in good company</SectionTitle>
-          <SectionParagraph>
-            Trusted by leading brands
-          </SectionParagraph>
+      <GoodCompanyContainer>
+        <SectionTitle>You'll be in good company</SectionTitle>
+        <SectionParagraph>Trusted by leading brands</SectionParagraph>
 
-          <LogoGrid>
-            {brandsList.map((brand, index) => (
-              <BrandLogo key={index} src={brand.image} alt={brand.alt} />
-            ))}
-          </LogoGrid>
+        <LogoGrid>
+          {brandsList.map((brand, index) => (
+            <BrandLogo key={index} src={brand.image} alt={brand.alt} />
+          ))}
+        </LogoGrid>
       </GoodCompanyContainer>
-
     </div>
   );
 }

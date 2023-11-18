@@ -1,5 +1,8 @@
-import {React, useEffect, useState} from 'react';
-import styled from 'styled-components';
+import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+
+import styled from "styled-components";
+import axios from "axios";
 
 const SectionTitle = styled.h2`
   font-size: 20px;
@@ -10,95 +13,81 @@ const SectionTitle = styled.h2`
   padding-left: 35px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 25px; /* Adjust the line width */
-    height: 4px; /* Adjust the line height */
-    background-color: #d200c8; 
+    height: 5px; /* Adjust the line height */
+    background-color: #d200c8;
   }
 `;
 
-const CasesContainer = styled.div`
-  background-color: #fff;
-  padding: 40px;
-`;
-
-const ImageCardContainer = styled.div`
-  display: flex;
-  gap: 50px;
-  margin-top: 60px;
-`;
-
-const ImageCard = styled.div`
-  flex: 1;
-  position: relative;
-  height: 45vh; /* Adjust the height as needed */
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-`;
-
-const CardOverlay = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px;
-`;
-
-const ImageCardTitle = styled.h3`
-  font-family: InterBold;
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-
-`;
-
-const ImageCardParagraph = styled.p`
-  font-family: InterNormal; 
-  font-size: 16px;
-  color: #fff;
-  margin-top: -10px;
-  margin-right: 10px;
-`;
-
-// Case Studies component
-function CaseStudies() {
-  const [caseStudies, setCaseStudies] = useState([]);
+const CaseStudies = () => {
+  const [sliderData, setSliderData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API
-    fetch('https://zm6zxgq6hyhe3smi5krzsrk2fu0iidhh.lambda-url.us-east-1.on.aws/')
-      .then(response => response.json())
-      .then(data => setCaseStudies(data))
-      .catch(error => console.error('Error fetching data:', error));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://zm6zxgq6hyhe3smi5krzsrk2fu0iidhh.lambda-url.us-east-1.on.aws"
+        );
+        setSliderData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  return (
-    <div>
-      {/* Cases Section: Case Studies */}
-      <CasesContainer id="cases">
-        <SectionTitle>Case studies</SectionTitle>
+  const SliderCards = sliderData.map((item, index) => (
+    <Col key={index} xs={12} sm={12} md={4} lg={4}>
+      <Card
+        className="text-white bg-dark"
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          paddingBottom: "100%",
+        }}
+      >
+        <Card.Img
+          src={item.imageUrl}
+          alt={item.title}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
+        <Card.ImgOverlay className="d-flex flex-column justify-content-end">
+          <Card.Title>{item.title}</Card.Title>
+          <Card.Text>{item.description}</Card.Text>
+        </Card.ImgOverlay>
+      </Card>
+    </Col>
+  ));
 
-        {/* Image Cards */}
-        <ImageCardContainer>
-          {caseStudies.map((study, index) => (
-            <ImageCard key={index} style={{ backgroundImage: `url("${study.imageUrl}")` }}>
-              <CardOverlay>
-                <ImageCardTitle>{study.title}</ImageCardTitle>
-                <ImageCardParagraph>{study.description}</ImageCardParagraph>
-              </CardOverlay>
-            </ImageCard>
-          ))}
-        </ImageCardContainer>
-      </CasesContainer>
-    </div>
+  return (
+    <Container>
+      <SectionTitle>Case Studies</SectionTitle>
+      <Carousel
+        data-bs-theme="dark"
+        interval={null} // Set to null to stop automatic sliding
+        nextLabel=""
+        prevLabel=""
+      >
+        <Carousel.Item style={{ paddingBottom: "5%" }}>
+          <Container>
+            <Row className="justify-content-around">{SliderCards}</Row>
+          </Container>
+        </Carousel.Item>
+      </Carousel>
+    </Container>
   );
-}
+};
 
 export default CaseStudies;

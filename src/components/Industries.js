@@ -1,94 +1,74 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { Container, Card, Col, Row } from "react-bootstrap";
 
-const IndustriesContainer = styled.div`
-  background-color: #fff;
-  padding: 0 40px;
-`;
+import WebDevImg from "../assets/web-dev-icon.svg";
+import UxImg from "../assets/ux-icon.svg";
+import BlockChainImg from "../assets/blockchain-icon.svg";
+import AppDevImg from "../assets/app-dev-icon.svg";
 
-const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 0px;
-`;
+const ServicesData = [
+  {
+    name: "Web development",
+    imageUrlPath: WebDevImg,
+    imageName: "web-dev",
+    description:
+      "We use cutting-edge web development technologies to help our clients fulfill their business goals through functional, reliable solutions.",
+  },
+  {
+    name: "User experience & design",
+    imageUrlPath: UxImg,
+    imageName: "ux-design",
+    description:
+      "Our complete web design services will bring your ideas to life and provide you with a sleek, high-performing product that elevates your business.",
+  },
+  {
+    name: "Blockchain solutions",
+    imageUrlPath: BlockChainImg,
+    imageName: "block-chain",
+    description:
+      "We conduct market research to determine the optimal blockchain-based solutions to help you grow your company and achieve your business goals.",
+  },
+  {
+    name: "Mobile app development",
+    imageUrlPath: AppDevImg,
+    imageName: "app-dev",
+    description:
+      "Our extensive mobile development experience allows us to create custom native and cross-platform iOS and Android mobile solutions for our clients.",
+  },
+];
 
-const Card = styled.div`
-  padding: 0 20px;
-  margin: 5px;
-  border-radius: 10px;
-`;
+const Services = ServicesData.map((Service, index) => (
+  <Col md={3} key={index}>
+    <Card
+      style={{
+        width: "100%",
+        marginBottom: "20px",
+        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+      }}
+    >
+      <Card.Img
+        variant="top"
+        src={Service.imageUrlPath}
+        alt={Service.imageName}
+        style={{ height: "120px", objectFit: "contain" }}
+      />
+      <Card.Body>
+        <Card.Title style={{ fontSize: "1.2em", fontWeight: "bold" }}>
+          {Service.name}
+        </Card.Title>
+        <Card.Text style={{ fontSize: "0.9em", color: "#555" }}>
+          {Service.description}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  </Col>
+));
 
-const CardImage = styled.img`
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  margin-bottom: 20px;
-`;
-
-const CardTitle = styled.h3`
-  font-family: InterBold;
-  font-size: 23px;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 20px;
-`;
-
-const CardParagraph = styled.p`
-  font-family: InterNormal; 
-  font-size: 19px;
-  color: #000;
-  margin-top: 60px;
-`;
-
-// Main component
 function Industries() {
   return (
-    <div>
-
-      <IndustriesContainer id="industries">
-
-        {/* Cards */}
-        <CardContainer>
-          {/* Card 1 */}
-          <Card>
-            <CardImage src="/web-dev-icon.svg" alt="Web" />
-            <CardTitle>Web development</CardTitle>
-            <CardParagraph>
-            We use cutting-edge web development technologies to help our clients fulfill their business goals through functional, reliable solutions.
-            </CardParagraph>
-          </Card>
-
-          {/* Card 2 */}
-          <Card>
-            <CardImage src="ux-icon.svg" alt="UX" />
-            <CardTitle>User experience & design</CardTitle>
-            <CardParagraph>
-            Our complete web design services will bring your ideas to life and provide you with a sleek, high-performing product that elevates your business.
-            </CardParagraph>
-          </Card>
-
-          {/* Card 3 */}
-          <Card>
-            <CardImage src="app-dev-icon.svg" alt="Mobile" />
-            <CardTitle>Mobile app development</CardTitle>
-            <CardParagraph>
-            Our extensive mobile development experience allows us to create custom native and cross-platform iOS and Android mobile solutions for our clients.
-            </CardParagraph>
-          </Card>
-
-          {/* Card 4 */}
-          <Card>
-            <CardImage src="blockchain-icon.svg" alt="Blockchain" />
-            <CardTitle>Blockchain solutions</CardTitle>
-            <CardParagraph>
-            We conduct market research to determine the optimal blockchain-based solutions to help you grow your company and achieve your business goals.
-            </CardParagraph>
-          </Card>
-        </CardContainer>
-      </IndustriesContainer>
-
-    </div>
+    <Container>
+      <Row>{Services}</Row>
+    </Container>
   );
 }
 
