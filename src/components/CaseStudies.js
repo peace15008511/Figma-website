@@ -1,9 +1,9 @@
-import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-
+import { useState, useEffect } from "react";
+import { Carousel, Container } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
 
+// Styled component for the section title
 const SectionTitle = styled.h2`
   font-size: 20px;
   font-weight: 400;
@@ -18,15 +18,17 @@ const SectionTitle = styled.h2`
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 25px; /* Adjust the line width */
-    height: 5px; /* Adjust the line height */
+    width: 25px;
+    height: 5px;
     background-color: #d200c8;
   }
 `;
 
 const CaseStudies = () => {
+  // State to hold slider data
   const [sliderData, setSliderData] = useState([]);
 
+  // Fetch slider data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,49 +44,31 @@ const CaseStudies = () => {
     fetchData();
   }, []);
 
-  const SliderCards = sliderData.map((item, index) => (
-    <Col key={index} xs={12} sm={12} md={4} lg={4}>
-      <Card
-        className="text-white bg-dark"
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          paddingBottom: "100%",
-        }}
-      >
-        <Card.Img
-          src={item.imageUrl}
-          alt={item.title}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-          }}
-        />
-        <Card.ImgOverlay className="d-flex flex-column justify-content-end">
-          <Card.Title>{item.title}</Card.Title>
-          <Card.Text>{item.description}</Card.Text>
-        </Card.ImgOverlay>
-      </Card>
-    </Col>
+  // Map slider data to Carousel items
+  const SliderItems = sliderData.map((item, index) => (
+    <Carousel.Item key={index}>
+      {/* Image with object-fit and custom height */}
+      <img
+        className="d-block w-100"
+        src={item.imageUrl}
+        alt={item.title}
+        style={{ objectFit: "cover", height: "500px" }}
+      />
+      {/* Carousel caption with title and description */}
+      <Carousel.Caption className="d-flex flex-column justify-content-end">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </Carousel.Caption>
+    </Carousel.Item>
   ));
 
   return (
-    <Container>
+    <Container id="cases">
+      {/* Section title */}
       <SectionTitle>Case Studies</SectionTitle>
-      <Carousel
-        data-bs-theme="dark"
-        interval={null} // Set to null to stop automatic sliding
-        nextLabel=""
-        prevLabel=""
-      >
-        <Carousel.Item style={{ paddingBottom: "5%" }}>
-          <Container>
-            <Row className="justify-content-around">{SliderCards}</Row>
-          </Container>
-        </Carousel.Item>
+      {/* Carousel component with fade effect, no automatic sliding, and no indicators */}
+      <Carousel fade interval={null} indicators={false}>
+        {SliderItems}
       </Carousel>
     </Container>
   );

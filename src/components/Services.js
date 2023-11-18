@@ -78,7 +78,7 @@ function Industries() {
           variant="top"
           src={Service.imageUrlPath}
           alt={Service.imageName}
-          style={{ height: "120px", objectFit: "contain" }}
+          style={{ height: "60px", paddingRight: "150px" }}
         />
         <Card.Body>
           <Card.Title style={{ fontSize: "1.2em", fontWeight: "bold" }}>
@@ -93,14 +93,15 @@ function Industries() {
   ));
 
   return (
-    <Container>
+    <Container id="industries">
       <Row>{Services}</Row>
     </Container>
   );
 }
+
 function Services() {
   return (
-    <Container id="services">
+    <Container id="services" style={{ marginTop: "40px" }}>
       <Row>
         <Col>
           {/* Service Section: What We Do */}

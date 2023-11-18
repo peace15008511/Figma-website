@@ -55,7 +55,7 @@ const ContactParagraph4 = styled.p`
   font-family: InterNormal;
   font-size: 16px;
   color: #fff;
-  margin-top: 85px;
+  margin-top: 100px;
 `;
 
 const footerItems = [
