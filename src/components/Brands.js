@@ -1,5 +1,22 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+
+import VisaBrandImage from "../assets/visa-black.svg";
+import TimeBankBrandImage from "../assets/tyme-bank-black.svg";
+import DistellBrandImage from "../assets/distell-black.svg";
+import SpotifyBrandImage from "../assets/spotify-black.svg";
+import MicrosoftBrandImage from "../assets/microsoft-black.svg";
+import EngenBrandImage from "../assets/engen-black.svg";
+import NikeBrandImage from "../assets/nike-black.svg";
+import WesgrowBrandImage from "../assets/wesgrow-black.svg";
+import MultiChoiceBrandImage from "../assets/multichoice-black.svg";
+import PicknPayBrandImage from "../assets/pnp-black.svg";
+import LiquidBrandImage from "../assets/liquid-black.svg";
+import TFGBrandImage from "../assets/tfg-black.svg";
+import SanlamBrandImage from "../assets/sanlam-black.svg";
+import SantamBrandImage from "../assets/santam-black.svg";
+import BBCBrandImage from "../assets/bbc-black.svg";
 
 const SectionTitle = styled.h2`
   font-size: 20px;
@@ -33,18 +50,9 @@ const GoodCompanyContainer = styled.div`
   padding: 40px 60px;
 `;
 
-const LogoGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 10%;
-  max-width: 90%; /* Set a maximum width for the grid */
-  margin: 0 auto;
-  margin-top: 60px;
-`;
-
 const BrandLogo = styled.img`
   max-width: 100%;
-  height: 85px;
+  height: auto;
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -52,46 +60,47 @@ const BrandLogo = styled.img`
 `;
 
 const brandsList = [
-  { brandName: "Visa", image: "visa-black.svg", alt: "Visa" },
-  { brandName: "TimeBank", image: "tyme-bank-black.svg", alt: "Time Bank" },
-  { brandName: "Distell", image: "distell-black.svg", alt: "Distell" },
-  { brandName: "Spotify", image: "spotify-black.svg", alt: "Spotify" },
-  { brandName: "Microsoft", image: "microsoft-black.svg", alt: "Microsoft" },
-
-  { brandName: "Engen", image: "engen-black.svg", alt: "Engen" },
-  { brandName: "Nike", image: "nike-black.svg", alt: "Nike" },
-  { brandName: "Wesgrow", image: "wesgrow-black.svg", alt: "Wesgrow" },
+  { brandName: "Visa", image: VisaBrandImage, alt: "Visa" },
+  { brandName: "TimeBank", image: TimeBankBrandImage, alt: "Time Bank" },
+  { brandName: "Distell", image: DistellBrandImage, alt: "Distell" },
+  { brandName: "Spotify", image: SpotifyBrandImage, alt: "Spotify" },
+  { brandName: "Microsoft", image: MicrosoftBrandImage, alt: "Microsoft" },
+  { brandName: "Engen", image: EngenBrandImage, alt: "Engen" },
+  { brandName: "Nike", image: NikeBrandImage, alt: "Nike" },
+  { brandName: "Wesgrow", image: WesgrowBrandImage, alt: "Wesgrow" },
   {
     brandName: "MultiChoice",
-    image: "multichoice-black.svg",
+    image: MultiChoiceBrandImage,
     alt: "MultiChoice",
   },
-  { brandName: "PicknPay", image: "pnp-black.svg", alt: "PicknPay" },
-
-  { brandName: "Liquid", image: "liquid-black.svg", alt: "Liquid" },
-  { brandName: "TFG", image: "tfg-black.svg", alt: "TFG" },
-  { brandName: "Sanlam", image: "sanlam-black.svg", alt: "Sanlam" },
-  { brandName: "Santam", image: "santam-black.svg", alt: "Santam" },
-  { brandName: "BBC", image: "bbc-black.svg", alt: "BBC" },
+  { brandName: "PicknPay", image: PicknPayBrandImage, alt: "PicknPay" },
+  { brandName: "Liquid", image: LiquidBrandImage, alt: "Liquid" },
+  { brandName: "TFG", image: TFGBrandImage, alt: "TFG" },
+  { brandName: "Sanlam", image: SanlamBrandImage, alt: "Sanlam" },
+  { brandName: "Santam", image: SantamBrandImage, alt: "Santam" },
+  { brandName: "BBC", image: BBCBrandImage, alt: "BBC" },
   // Add more brands as needed
 ];
 
-// Main component
 function Brands() {
   return (
-    <div>
+    <Container className="py-5">
       {/* Good company Section */}
       <GoodCompanyContainer>
         <SectionTitle>You'll be in good company</SectionTitle>
         <SectionParagraph>Trusted by leading brands</SectionParagraph>
 
-        <LogoGrid>
+        <Row xs={1} lg={5} className="justify-content-center">
           {brandsList.map((brand, index) => (
-            <BrandLogo key={index} src={brand.image} alt={brand.alt} />
+            <Col key={index} className="text-center mb-4">
+              <div className="p-3">
+                <BrandLogo src={brand.image} alt={brand.alt} />
+              </div>
+            </Col>
           ))}
-        </LogoGrid>
+        </Row>
       </GoodCompanyContainer>
-    </div>
+    </Container>
   );
 }
 
